@@ -1,0 +1,48 @@
+/*
+Problem Description
+对于表达式n^2+n+41，当n在（x,y）范围内取整数值时（包括x,y）(-39<=x<y<=50)，判定该表达式的值是否都为素数。
+ 
+
+Input
+输入数据有多组，每组占一行，由两个整数x，y组成，当x=0,y=0时，表示输入结束，该行不做处理。
+ 
+
+Output
+对于每个给定范围内的取值，如果表达式的值都为素数，则输出"OK",否则请输出“Sorry”,每组输出占一行。
+ 
+*/
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int x,y,s,i,j,t,n;
+    while(scanf("%d%d",&x,&y)==2)
+    {
+        if(x==0&&y==0)
+            break;                           //表示x，y同时为零时结束程序运行
+        if(x>y)
+        {
+            t=x;
+            x=y;
+            y=t;
+        }                           //当你随机输入数据时，无法确定x，y的大小
+        n=0;                           //计数变量
+        for(i=x; i<=y; i++)
+        {
+            t=0;                           //这个t用来计数,判断s
+            s=i*i+i+41;
+            for(j=2; j<=sqrt(s); j++)
+            {
+                if(s%j==0)
+                    t+=1;
+            }                           //判断表达式的值s是否为素数，很容易看错题目
+            if(t==0)
+                n+=1;                           //表示当前s为素数，继续判断
+        }
+        if(n==y-x+1)
+            printf("OK\n");                           //所有s均为素数
+        else
+            printf("Sorry\n");
+    }
+    return 0;
+}
