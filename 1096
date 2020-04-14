@@ -26,7 +26,9 @@ int main()
                 scanf("%d",&a);
                 s+=a;
             }
-            printf("%d\n\n",s);
+            printf("%d\n",s);
+            if(n!=0)
+                printf("\n");
         }
     }
     return 0;
