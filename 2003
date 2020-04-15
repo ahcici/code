@@ -1,0 +1,23 @@
+/*
+Problem Description
+求实数的绝对值。
+ 
+
+Input
+输入数据有多组，每组占一行，每行包含一个实数。
+ 
+
+Output
+对于每组输入数据，输出它的绝对值，要求每组数据输出一行，结果保留两位小数。
+*/
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    double a;
+    while(scanf("%lf",&a)==1)
+    {
+        printf("%.2lf\n",fabs(a));         //求绝对值以及开根号等运算需要用到math.h头文件
+    }
+    return 0;
+}
