@@ -1,0 +1,76 @@
+/*
+Problem Description
+给定一个日期，输出这个日期是该年的第几天。
+ 
+
+Input
+输入数据有多组，每组占一行，数据格式为YYYY/MM/DD组成，具体参见sample input ,另外，可以向你确保所有的输入数据是合法的。
+ 
+
+Output
+对于每组输入数据，输出一行，表示该日期是该年的第几天。
+
+*/
+#include<stdio.h>
+int main()
+{
+    int y,m,d;
+    while(scanf("%d/%d/%d",&y,&m,&d)==3)
+    {
+        int ad=0;//总天数
+        if(y%400==0||y%4==0&&y%100!=0)
+            ad=1;
+        switch(m)
+        {
+        case 1:
+            ad=d;
+            printf("%d\n",ad);
+            break;
+        case 2:
+            ad=31+d;
+            printf("%d\n",ad);
+            break;
+        case 3:
+            ad+=59+d;
+            printf("%d\n",ad);
+            break;
+        case 4:
+            ad+=90+d;
+            printf("%d\n",ad);
+            break;
+        case 5:
+            ad+=120+d;
+            printf("%d\n",ad);
+            break;
+        case 6:
+            ad+=151+d;
+            printf("%d\n",ad);
+            break;
+        case 7:
+            ad+=181+d;
+            printf("%d\n",ad);
+            break;
+        case 8:
+            ad+=212+d;
+            printf("%d\n",ad);
+            break;
+        case 9:
+            ad+=243+d;
+            printf("%d\n",ad);
+            break;
+        case 10:
+            ad+=273+d;
+            printf("%d\n",ad);
+            break;
+        case 11:
+            ad+=304+d;
+            printf("%d\n",ad);
+            break;
+        case 12:
+            ad+=334+d;
+            printf("%d\n",ad);
+            break;
+        }
+    }
+    return 0;
+}
