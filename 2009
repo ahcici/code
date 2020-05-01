@@ -1,0 +1,56 @@
+/*Problem Description
+数列的定义如下：
+数列的第一项为n，以后各项为前一项的平方根，求数列的前m项的和。
+Input
+输入数据有多组，每组占一行，由两个整数n（n<10000）和m(m<1000)组成，n和m的含义如前所述。
+Output
+对于每组输入数据，输出该数列的和，每个测试实例占一行，要求精度保留2位小数。
+*/
+
+方法一
+
+
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int m;
+    float a[100],n,s;
+    while(scanf("%f%d",&n,&m)==2)                           //n是该数列的首项，m为要求数列的长度
+    {
+        int i;
+        s=n;
+        for(i=1; i<m; i++)                                  //这里是将首项单独拿出来计算，从第二项开始，每一项都为前一项的平方根
+        {                                                   //但是一点要注意，计算和值时，是从第二项开始，即总共计算m-1项的和（s已经初始化为首项值了）
+            n=sqrt(n);
+            s+=n;
+        }
+        printf("%.2f\n",s);                             //输出前m项的和
+    }
+    return 0;
+}
+
+
+方法二
+
+
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    float a[100],n,m,s;
+    while(scanf("%f%d",&n,&m)==2)
+    {
+        int i;
+        s=0;
+        for(i=0; i<m; i++)
+        {
+            s+=n;
+            n=sqrt(n);
+        }
+        printf("%.2f\n",s);
+    }
+    return 0;
+}
+//这个就是简单的把除了计数变量i以外的数直接定义成浮点型
+//然后直接计算前m项的和
