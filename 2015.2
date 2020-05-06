@@ -1,0 +1,86 @@
+/*
+Problem Description
+有一个长度为n(n<=100)的数列，该数列定义为从2开始的递增有序偶数，现在要求你按照顺序每m个数求出一个平均值，如果最后不足m个，则以实际数量求平均值。编程输出该平均值序列。
+ 
+
+Input
+输入数据有多组，每组占一行，包含两个正整数n和m，n和m的含义如上所述。
+ 
+
+Output
+对于每组输入数据，输出一个平均值序列，每组输出占一行。
+ 
+
+Sample Input
+3 2
+4 2
+ 
+
+Sample Output
+3 6
+3 7
+*/
+#include<stdio.h>
+void aver(int x[100],int b,int c)                //这个函数实现求平均值  b表示商x，c为被除数
+{
+    int t,i,j,sum,average;
+    t=0;
+    for(j=1; j<=b; j++)
+    {
+        sum=0;
+        for(i=(j-1)*c; i<=j*c-1; i++)
+        {
+            sum+=x[i];
+        }
+        average=sum/c;
+        if(t==1)                                   //用t来判断后面是不是需要空格符
+            printf(" ");
+        printf("%d",average);
+        t=1;
+    }
+}
+
+int main()
+{
+    int a[100],n,m;
+    while(scanf("%d%d",&n,&m)==2)
+    {
+        int i,j,t,x,y,sum,average;
+        for(i=0; i<n; i++)
+        {
+            a[i]=2*i+2;                         //用数组来存储第n个值
+        }
+        x=n/m;
+        y=n%m;
+        if(y==0)                             //余数为零时直接计算各组平均值
+        {
+            aver(a,x,m);
+            printf("\n");
+        }
+        else
+        {
+            if(y==1)                          //这个把余数等于1的情况单独拿出来，平均值即最后一个数
+            {
+                aver(a,x,m);
+                average=a[n-1];
+                printf(" %d\n",average);
+            }
+            else
+            {
+                aver(a,x,m);
+                sum=0;
+                for(i=j*m; i<n; i++)                  //计算剩余数的平均值
+                {
+                    sum+=a[i];
+                }
+                n=n-j*m;                             //剩余数的个数
+                average=sum/n;
+                printf(" %d\n",average);
+            }
+        }
+    }
+    return 0;
+}
+
+
+这个就把函数调用与数组一起整合了，但是耗时哎，有没有觉得@ —— @    但很有层次感
