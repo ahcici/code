@@ -1,0 +1,60 @@
+/*
+Problem Description
+有一个长度为n(n<=100)的数列，该数列定义为从2开始的递增有序偶数，
+现在要求你按照顺序每m个数求出一个平均值，如果最后不足m个，则以实际数量求平均值。
+编程输出该平均值序列。
+Input
+输入数据有多组，每组占一行，包含两个正整数n和m，n和m的含义如上所述。
+Output
+对于每组输入数据，输出一个平均值序列，每组输出占一行。
+Sample Input
+3 2
+4 2
+Sample Output
+3 6
+3 7
+*/
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int n,m;
+    while(scanf("%d%d",&n,&m)!=EOF)
+    {
+        int x,y,i,j;                             //用x来表示n/m的值（商），就可以分为至少x组数；用y来表示n%m的值（余）
+        int s;                                   //当y=0时，只有x个平均值，y=1时有x+1个平均值
+        x=n/m;
+        y=n%m;
+        for(i=1; i<=x; i++)                      //x组数据   由x与偶数n的位置关系可以表示出当x变化时n坐标（位置）j的变化
+        {
+            s=0;
+            for(j=i*m-m+1; j<=i*m; j++)
+            {
+                s+=2*j;                            //求每个数的和
+            }
+            if(i==1)
+                printf("%d",s/m);                 //直接输出s/m表示该组偶数的平均值
+            else
+                printf(" %d",s/m);                //但是要注意两个数之间要有空格符，第一个数前面最后一个数后面没有空格，根据个人习惯选择写法
+        }
+        if(y==0)
+        {
+            printf("\n");                      //当余数y=0时，直接换行进入下一组数据计算
+            continue;
+        }
+        else                                   //否则求出剩余数的平均数的值
+        {
+            s=0;
+            for(i=x*m+1; i<=n; i++)
+                s+=2*i;
+            n=n-x*m;
+            printf(" %d\n",s/n);
+        }
+    }
+    return 0;
+}
+
+
+
+
+也可以用数组，函数调用来实现
